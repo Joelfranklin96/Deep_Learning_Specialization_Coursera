@@ -1,0 +1,6 @@
+We performed horizontal flip and rotation data augmentation methods.
+We freezed the weights of all layers except the top 2 layers and retrained the model on the top 2 new layers.
+Achieved training accuracy of 78% and validation accuracy of 86%.
+Total number of layers in the base model is 155.
+We then freezed the weights of all layers up until layer 120 and retrained the model on the remaining 35 layers.
+Achieved training accuracy of 94% and validation accuracy of close to 100%.

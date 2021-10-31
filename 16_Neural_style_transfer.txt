@@ -1,0 +1,35 @@
+The generated image combines the 'content' of image C with the 'style' of image S.
+
+Transfer learning of VGG-19 model.
+
+The shallower layers of ConvNet model detect lower-level features such as edges and simple textures.
+The deeper layers tend to detect higher-level features such as complex textures and object classes.
+
+Content_cost_function = 1/(4 x nh X nw x nc) x sum_across_all_layers(a(C) - a(G))^2 where nh,nw,nc are
+the height, width and number of channels of a particular layer l.
+
+The content cost function was calculated.
+
+The style cost function for a particular layer was calculated.
+The overall style cost is calculated by weighted addition of style of individual layers. If we want the
+generated image to softly follow the style image, try choosing larger weights for deeper layers and
+smaller weights for the first layers. If we want the generated image to strongly follow the style image,
+try choosing smaller weights for deeper layers and larger weights for the first layers.
+
+We are not training any model. Neural style transfer is not a supervised learning algorithm. It doesn't
+learn any parameters. At the end of each iteration of the optimization algorithm, the pixel values of 
+the generated image G are updated.
+
+VGG19 model had already been trained. The weights don't get updated. Only the pixel values of
+generated image G get updated. Content cost is minimized when the activations we get by running the 
+generated image G and content image C through the model are similar. Style cost is minimum when the 
+style of generated image G and style image S are similar. (Same measure of correlations across channels 
+of G and S)
+
+Load the content image.
+Load the style image.
+Randomly initialize the image to be generated.
+Load Pre-trained VGG19 model.
+Compute total cost. Only a particular set of layers of the VGG model are used for computing the activations. Only 
+from these activations we compute the content and style cost. 
+After each iteration of the optimization algorithm, the pixel values of the generated image G are updated.

@@ -1,0 +1,28 @@
+Face verification is a 1:1 matching problem whereas Face recognition is a 1:k matching problem.
+
+The simplest way is to compare the 2 images pixel by pixel. This algorithm performs poorly since the pixel values change dramatically
+due to variations in lighting, orientation of the person's face, minor changes in head position and so on.
+Rather than using the raw image, we learn an encoding for each image (f(img)). We then compare the encodings to check if it is a match.
+
+The image is originally of shape (96,96). 
+It is scaled to (160,160) and converted into a 128-dimensional vector by img_to_encoding() function.
+
+We used a pretrained model whose weights were already trained.
+Triplet loss is calculated by feeding in the anchor, positive and negative images.
+Triplet loss is defined by max( ((f(A) - f(P))^2 - (f(A) - f(N))^2 + alpha), 0).
+
+Face Verification
+The inputs are 'image_path' (image of the person taken while swiping id card), identity (string of person's name),
+database (stores image encodings of employees) and model (which calculates the 128 dimensional vector encoding).
+The encoding of the image is calculated which is a 128 dimensional vector.
+The distance between this encoding and encoding of identity image stored in database is calculated.
+If the distance is less than 0.7, it's a match.
+
+Face Recognition
+The inputs are 'image_path' (image of the person taken while swiping id card), database(stores image encodings
+of employees) and model (which calculates the 128 dimensional vector encoding).
+The encoding of the image is calculated which is a 128 dimensional vector.
+The minimum distance is assigned a large value of 100.
+The distance between this encoding and all of encodings of images in database is calculated. (For loop to calculate the minimum distance)
+If the minimum distance > 0.7, the person is not an employee.
+If the minumum distance < 0.7, the person is an employee and his/her name is as per the name stored in database.

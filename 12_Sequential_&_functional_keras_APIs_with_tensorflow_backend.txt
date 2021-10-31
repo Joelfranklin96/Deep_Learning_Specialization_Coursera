@@ -1,0 +1,2 @@
+Both the Sequential and Functional APIs return a TF Keras model object. 
+The only difference is how inputs are handled inside the object model.
